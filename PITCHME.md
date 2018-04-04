@@ -1,6 +1,56 @@
 ## Spring
 
++++
 
+### What is dependecy Injection?
+
+Instead of 
+
+
+```java
+
+public class A {
+  private B b;
+
+  public A() {
+    this.b = new B(); // A *depends on* B
+  }
+
+  public void DoSomeStuff() {
+    // Do something with B here
+  }
+}
+
+public static void Main(string[] args) {
+  A a = new A();
+  a.DoSomeStuff();
+}
+
+```
+
+you write 
+
+```java
+
+public class A {
+  private B b;
+
+  public A(B b) { // A now takes its dependencies as arguments
+    this.b = b; // look ma, no "new"!
+  }
+
+  public void DoSomeStuff() {
+    // Do something with B here
+  }
+}
+
+public static void Main(string[] args) {
+  B b = new B(); // B is constructed here instead
+  A a = new A(b);
+  a.DoSomeStuff();
+}
+
+```
 
 ### Why use dependency injection?
 
@@ -29,6 +79,8 @@
 
 ## Functional programming
 
++++
+
 ### Why FP?
 
 +++
@@ -47,11 +99,13 @@
 
 ## Important requirements for delivering any feature
 
++++
+
 ### Automated testing
 
-Have I written automated tests  to verify my feature?
+* Have I written automated tests  to verify my feature?
 
-Learn to use Mocking libraries & Test frameworks
+* Learn to use Mocking libraries & Test frameworks
 
 +++
 

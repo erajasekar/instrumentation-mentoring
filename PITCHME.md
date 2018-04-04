@@ -6,7 +6,6 @@
 
 Instead of 
 
-
 ```java
 
 public class A {
@@ -15,7 +14,6 @@ public class A {
   public A() {
     this.b = new B(); // A *depends on* B
   }
-
   public void DoSomeStuff() {
     // Do something with B here
   }
@@ -27,8 +25,9 @@ public static void Main(string[] args) {
 }
 
 ```
++++
 
-you write 
+You write 
 
 ```java
 
@@ -53,6 +52,12 @@ public static void Main(string[] args) {
 ```
 
 ### Why use dependency injection?
+
+* Give you ton of advantages
+* Ability to control functionality from a central place instead of spreading it throughout your program
+* Ablity to easily test each class in isolation because you can pass along mocked objects
+* But the drawback is you have to deal with complexity of wiring all your references in a central place.
+* This is what the DI Framework like Spring helps.
 
 +++
 ### How Spring annotation works?

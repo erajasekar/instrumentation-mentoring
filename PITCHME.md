@@ -97,29 +97,150 @@ It was very hard to debug why this happened.
 * By default, make a class immutable and use builder patter if a class has too many fields.
 
 
-+++
-
-### How Functional programming helps
-
 ---
 
-## Functional programming
+## Functional programming 
 
 +++
 
-### Why FP?
+### Why use Functional programming?
+
+* Functional programs have no side effects, so it's easier to reason about, easier to test, easier to run concurrent context.
+* OOP abstracts over data, while FP abstracts over behaviour.
+* It expresses what code does instead of how it does.
 
 +++
 
-### Imperative vs Declartive
+### Declarative code is easier to Read
+
+* Declarative code is easier to understand then logic expressed in imperative code
+* That's why declarive languages like HTML, SQL are easier than imperative languages.
+
++++
+
+### Example for Declarative vs Imperative
+
+```javascript
+const tripleMap = numbers => {
+    const triple = [];
+    for (let i = 0; i < numbers.length; i++) {
+        triple.push(numbers[i] * 3);
+    }
+return triple;
+};
+```
+
+Functional Style
+
+```javascript
+consttripleMap = numbers => numbers.map(n => n * 3);
+```
 
 +++
 
 ### Requires a paradigm shift
 
+* Learn to think like a [functional programmer](http://nealford.com/functionalthinking.html)
+* Use pure functions, high order functions and functional features added in JDK8.
+
+
 +++
 
-### Example
+### Example for Imperative Style
+
+Let’s say we want to print day of the week for given stream date strings in format MM/dd/YYYY. 
+
+```java
+private static LocalDate parseDate(String dateString) {
+        return LocalDate.from(formatter.parse(dateString));
+    }
+public static void main(String args[]) {
+
+    List<String> dates = Arrays.asList("12/31/2014",
+            "01-01-2015",
+            "12/31/2015",
+            "not a date",
+            "01/01/2016");
+
+    List<DayOfWeek> result = new ArrayList<>();
+    for(String dateString: dates){
+
+        try{
+            LocalDate date = parseDate(dateString);
+            result.add(DayOfWeek.from(date));
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+
+    }
+}
+
+```
+
++++
+
+### Example for Functional Style Using optional
+
+Let’s say we want to print day of the week for given stream date strings in format MM/dd/YYYY. 
+
+```java
+private static Optional<LocalDate> parseDate(String dateString){
+    LocalDate localDate = null;
+    try {
+        localDate = LocalDate.from(formatter.parse(dateString));
+    }catch (DateTimeParseException e){
+        System.out.println(e.getMessage());
+    }
+    return Optional.ofNullable(localDate);
+}
+
+public static void main(String args[]) {
+    Stream.of("12/31/2014",
+            "01-01-2015",
+            "12/31/2015",
+            "not a date",
+            "01/01/2016")
+            .map(StreamExceptionHandling::parseDate)//Parse String to LocalDate
+            .filter(Optional::isPresent) //Filter valid ones
+            .map(Optional::get)//Get wrapped LocalDate
+            .map(DayOfWeek::from) //Map to day of week
+            .forEach(System.out::println); //Print
+}
+```
+
++++
+
+###Example using Try Monad
+Javaslang is a functional library for Java 8+. We will use Try object from Javaslang which can be either a instance of `Success` or `Failure`
+
+
+```java
+
+private static Try<LocalDate> parseDate(String dateString){
+    return Try.of(() -> LocalDate.from(formatter.parse(dateString)));
+}
+
+
+private static Try<LocalDate> parseDateAlternate(String dateString){
+    return Try.of(() -> LocalDate.from(alternateFormatter.parse(dateString)));
+}
+
+public static void main(String args[]) {
+    Stream.of("12/31/2014",
+            "01-01-2015",
+            "12/31/2015",
+            "not a date",
+            "01/01/2016")
+            .map(StreamExceptionHandling::parseDate)//Parse String to LocalDate
+            .map(v-> v.recoverWith( e -> parseDateAlternate(((DateTimeParseException)e).getParsedString())))//Try recovering with alternate formatter
+            .peek(v-> v.onFailure(t -> System.out.println("Failed due to " + t.getMessage())))//Print error on failure
+            .filter(Try::isSuccess)//Filter valids
+            .map(Try::get)//Get wrapped value
+            .map(DayOfWeek::from)//Map to day of week
+            .forEach(System.out::println);//Print
+}
+```
+
 
 ---
 

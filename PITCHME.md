@@ -63,6 +63,7 @@ Examples
 UIInstrumentationImplAutoConfiguration
 InstrumentationServiceImpl
 LegacyAppAnalyticsHandler
+LightningInstrumentationConfig
 Flowables
 
 +++
@@ -84,7 +85,7 @@ https://gus.lightning.force.com/lightning/r/0D5B0000007vzcNKAQ/view
 
 https://swarm.soma.salesforce.com/changes/12006421
 
-It was very hard to debug why this happened.
+It was very hard to debug these kind of errors.
 
 +++
 
@@ -93,8 +94,8 @@ It was very hard to debug why this happened.
 > Messing with the state is the root of many problems.
 
 * You should [minimize the state as much as possible](https://medium.com/@rufuszh90/effective-java-item-15-minimise-mutability-2526108ac7f1).
-* Immutable object simply concurrent programming as there is not shared state, you don't need to synchronize.
-* By default, make a class immutable and use builder patter if a class has too many fields.
+* Immutable object simplify concurrent programming as there is not shared state, you don't need to synchronize.
+* By default, make a class immutable and use builder pattern if a class has too many fields.
 
 
 ---
@@ -148,7 +149,7 @@ consttripleMap = numbers => numbers.map(n => n * 3);
 
 ### Example for Imperative Style
 
-Let’s say we want to print day of the week for given stream date strings in format MM/dd/YYYY. 
+Let’s say we want to print day of the week for a given list stream date strings in format MM/dd/YYYY. 
 
 ```java
 private static LocalDate parseDate(String dateString) {
@@ -181,8 +182,6 @@ public static void main(String args[]) {
 
 ### Example for Functional Style Using optional
 
-Let’s say we want to print day of the week for given stream date strings in format MM/dd/YYYY. 
-
 ```java
 private static Optional<LocalDate> parseDate(String dateString){
     LocalDate localDate = null;
@@ -211,20 +210,16 @@ public static void main(String args[]) {
 +++
 
 ###Example using Try Monad
-Javaslang is a functional library for Java 8+. We will use Try object from Javaslang which can be either a instance of `Success` or `Failure`
 
-
+We will use Try object from Javaslang which can be either a instance of `Success` or `Failure`
 ```java
 
 private static Try<LocalDate> parseDate(String dateString){
     return Try.of(() -> LocalDate.from(formatter.parse(dateString)));
 }
-
-
 private static Try<LocalDate> parseDateAlternate(String dateString){
     return Try.of(() -> LocalDate.from(alternateFormatter.parse(dateString)));
 }
-
 public static void main(String args[]) {
     Stream.of("12/31/2014",
             "01-01-2015",
@@ -280,7 +275,7 @@ public static void main(String args[]) {
 
 * I still use eclipse for debugging/hot deploy
 
-* Always whitelist the projects in workspace-user.xml
+* Always whitelist the projects in workspace-user.xml. Just run `ant pre` if you have made a change.
 
 * Try to use git for incremental checkin
 

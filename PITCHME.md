@@ -86,7 +86,16 @@ https://swarm.soma.salesforce.com/changes/12006421
 
 It was very hard to debug why this happened.
 
++++
+
 ### Immutability
+
+> Messing with the state is the root of many problems.
+
+* You should [minimize the state as much as possible](https://medium.com/@rufuszh90/effective-java-item-15-minimise-mutability-2526108ac7f1).
+* Immutable object simply concurrent programming as there is not shared state, you don't need to synchronize.
+* By default, make a class immutable and use builder patter if a class has too many fields.
+
 
 +++
 

@@ -30,9 +30,9 @@ You write
 ```java
 public class A {
   private B b;
-
-  public A(B b) { // A now takes its dependencies as arguments
-    this.b = b; // 
+  // A now takes its dependencies as arguments
+  public A(B b) { 
+    this.b = b; 
   }
   public void DoSomeStuff() {
     // Do something with B here
@@ -49,26 +49,42 @@ public static void Main(string[] args) {
 
 ### Why use dependency injection?
 
-* Give you ton of advantages
-* Ability to control functionality from a central place instead of spreading it throughout your program
-* Ablity to easily test each class in isolation because you can pass along mocked objects
+* Gives you ton of advantages.
+* Ability to control functionality from a central place instead of spreading it throughout your program.
+* Ablity to easily test each class in isolation because you can pass along mocked objects.
 * But the drawback is you have to deal with complexity of wiring all your references in a central place.
-* This is what the DI Framework like Spring helps.
+* That's why we use DI Framework like Spring.
 
 +++
 ### How Spring annotation works?
 
+Examples 
+
+UIInstrumentationImplAutoConfiguration
+InstrumentationServiceImpl
+LegacyAppAnalyticsHandler
+Flowables
+
 +++
 
-### Configuration
+### Spring best pratices
+
+* Split you code into API vs IMPL module
+* When creating a new class think if it should be managed by spring or not
+* Generally it's ok to not use DI for value or data classes, util classes 
 
 +++
 
 ### Caveats in storing state
 
----
+* Don't manage state of variables in spring managed classes as it will used from multiple threads.
+* If you know some class is thread safe `@NotThreadSafe` to document it.
 
-## Concurrency Best practices
+https://gus.lightning.force.com/lightning/r/0D5B0000007vzcNKAQ/view
+
+https://swarm.soma.salesforce.com/changes/12006421
+
+It was very hard to debug why this happened.
 
 ### Immutability
 

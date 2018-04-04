@@ -37,7 +37,6 @@ public class A {
   public A(B b) { // A now takes its dependencies as arguments
     this.b = b; // look ma, no "new"!
   }
-
   public void DoSomeStuff() {
     // Do something with B here
   }
@@ -50,6 +49,7 @@ public static void Main(string[] args) {
 }
 
 ```
++++
 
 ### Why use dependency injection?
 

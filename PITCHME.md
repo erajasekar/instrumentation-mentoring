@@ -209,7 +209,7 @@ public static void main(String args[]) {
 
 +++
 
-###Example using Try Monad
+### Example using Try Monad
 
 We will use Try object from Javaslang which can be either a instance of `Success` or `Failure`
 ```java

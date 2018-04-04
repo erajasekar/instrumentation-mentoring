@@ -7,7 +7,6 @@
 Instead of 
 
 ```java
-
 public class A {
   private B b;
 
@@ -18,7 +17,6 @@ public class A {
     // Do something with B here
   }
 }
-
 public static void Main(string[] args) {
   A a = new A();
   a.DoSomeStuff();
@@ -30,18 +28,16 @@ public static void Main(string[] args) {
 You write 
 
 ```java
-
 public class A {
   private B b;
 
   public A(B b) { // A now takes its dependencies as arguments
-    this.b = b; // look ma, no "new"!
+    this.b = b; // 
   }
   public void DoSomeStuff() {
     // Do something with B here
   }
 }
-
 public static void Main(string[] args) {
   B b = new B(); // B is constructed here instead
   A a = new A(b);

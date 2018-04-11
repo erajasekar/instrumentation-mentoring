@@ -121,7 +121,7 @@ It was very hard to debug these kind of errors.
 
 ### Example for Declarative vs Imperative
 
-Can you write a Javascript script code to triple content of Map?
+Can you write a Javascript code to triple content of Map?
 
 ```javascript
 
@@ -131,7 +131,7 @@ numbers = [1, 2, 3, 4, 5]
 
 to
 
-numbers = [3, 6, 9, 12, 15]
+triple = [3, 6, 9, 12, 15]
 
 ```
 
@@ -147,11 +147,15 @@ return triple;
 };
 ```
 
+<div class="fragment"> 
+
 Functional Style
 
 ```javascript
 consttripleMap = numbers => numbers.map(n => n * 3);
 ```
+
+</div>
 
 +++
 

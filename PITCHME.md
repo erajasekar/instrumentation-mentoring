@@ -114,8 +114,8 @@ It was very hard to debug these kind of errors.
 
 ### Declarative code is easier to Read
 
-* Declarative code is easier to understand then logic expressed in imperative code
-* That's why declarive languages like HTML, SQL are easier than imperative languages.
+* Declarative code is easier to understand then logic expressed in imperative code. |
+* That's why declarive languages like HTML, SQL are easier than imperative languages. |
 
 +++
 

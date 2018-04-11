@@ -137,6 +137,8 @@ triple = [3, 6, 9, 12, 15]
 
 +++
 
+Imperative Style
+
 ```javascript
 const tripleMap = numbers => {
     const triple = [];
@@ -147,15 +149,13 @@ return triple;
 };
 ```
 
-<div class="fragment"> 
++++ 
 
 Functional Style
 
 ```javascript
 consttripleMap = numbers => numbers.map(n => n * 3);
 ```
-
-</div>
 
 +++
 

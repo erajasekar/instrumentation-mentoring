@@ -115,11 +115,27 @@ It was very hard to debug these kind of errors.
 ### Declarative code is easier to Read
 
 * Declarative code is easier to understand then logic expressed in imperative code. |
-* That's why declarive languages like HTML, SQL are easier than imperative languages. |
+* That's why declarive languages like HTML, SQL are easier than imperative languages. 
 
 +++
 
 ### Example for Declarative vs Imperative
+
+Can you write a Javascript script code to triple content of Map?
+
+```javascript
+
+Example:
+
+numbers = [1, 2, 3, 4, 5]
+
+to
+
+numbers = [3, 6, 9, 12, 15]
+
+```
+
++++
 
 ```javascript
 const tripleMap = numbers => {
@@ -249,15 +265,34 @@ public static void main(String args[]) {
 
 * Learn to use Mocking libraries & Test frameworks
 
+* Think about how to Mock input data.
+
 +++
 
 ### Logging
 
 * Do I have enough logging to verify my feature works in production?
 
-* Do I have enough information to trouble shoot when something on working?
+* Do I have enough information to trouble shoot when something is not working? For e.g gack
 
 * Make sure to properly handle and log exceptions.
+
++++
+
+### Log Record Types
+
+* `ailtn` - Analytics And Instrumentation Lightning
+* `aiuim` - Analytics and Instrumentation UI Module
+* `aicml` - Analytics and Instrumentation Core Module - Used for gridforce job
+
++++
+
+### Log levels
+
+* `debug` - Debug logs will appear only in dev.
+* `info` - Informational Messages that will appear in prod.
+* `error` - Use for logging exceptions
+* `warn` - Warnings
 
 +++
 
